@@ -44,7 +44,7 @@
         "noEmitHelpers": true,
         "baseUrl": "./src/main/js",
         "paths": {
-            "teseract/server-api/*": ["./teseract/server-api/src/*"]
+            "@teseract/server-api/*": ["./@teseract/server-api/src/*"]
         },
         "resolveJsonModule": true
     },

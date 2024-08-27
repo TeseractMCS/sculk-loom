@@ -48,8 +48,7 @@
         },
         "resolveJsonModule": true
     },
-    // "include": ["./src/**/*.d.ts"],
-    // "include": ["scripts/**/*", "scripts/**/*.js"],
+    
     "exclude": ["scripts"],
     "compileOnSave": false
 }

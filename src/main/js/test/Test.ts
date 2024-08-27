@@ -1,22 +1,24 @@
 import {
     ChatSendBeforeEvent,
     EntityDieAfterEvent,
+    ItemUseBeforeEvent,
     PlayerJoinAfterEvent,
     world,
 } from "@minecraft/server";
 import EventHandler from "teseract/server-api/event/EventHandler";
+import TeseractPlugin from "teseract/server-api/plugin/TeseractPlugin";
 import Teseract from "teseract/server-api/Teseract";
-import Runnable from "teseract/server-api/timer/Runnable";
 
-export default class Test extends Runnable {
+export default class Test extends TeseractPlugin {
     @EventHandler
     public onChatSend(event: ChatSendBeforeEvent) {
         if (event.isCommand) {
             return;
         }
         event.cancel = true;
-        world.sendMessage(`${event.sender.name} >> ${event.message} xd`);
+        world.sendMessage(`${event.sender.name} >> ${event.message}`);
     }
+
     @EventHandler
     public onJoined(event: PlayerJoinAfterEvent) {
         LOGGER.info("A player has joined: " + event.playerName);
@@ -33,21 +35,29 @@ export default class Test extends Runnable {
                 event.deadEntity.name +
                 ", I hope you find your stuff!",
         );
-        event.deadEntity.getInventory()
         LOGGER.info("A player has died: " + event.deadEntity.name);
     }
 
-    public override *onRunJob(...args: any[]): Generator<void, void, void> {
-        world.sendMessage("I'm a message that will be sent every second!");
+    @EventHandler
+    public async fastTotem({ itemStack, source }: ItemUseBeforeEvent) {
+        if (
+            itemStack.typeId != "minecraft:shield" &&
+            itemStack.typeId != "minecraft:totem_of_undying"
+        ) {
+            return;
+        }
+        const inventory = source.getInventory();
+        await null;
+        inventory.setMainHandItemStack(inventory.getOffHandItemStack());
+        inventory.setOffHandItemStack(itemStack);
     }
 
-    public constructor() {
-        super();
+
+    public override async onEnabled() {
         LOGGER.info("Initialized " + this.constructor.name);
-        this.runTimer(20);
-        LOGGER.debug("A runnable timer is running!");
+        await null;
         Teseract.getEventManager().registerEvents(this);
         LOGGER.log("An event handler has been registerd");
-        LOGGER.info(this.constructor.name + " has been fully enabled!")
+        LOGGER.info(this.constructor.name + " has been fully enabled!");
     }
 }

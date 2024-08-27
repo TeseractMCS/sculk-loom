@@ -4,14 +4,33 @@ import { mkdirSync, readFileSync, writeFileSync, unlinkSync } from "fs";
 import { join, relative, dirname } from "path";
 import JSON5 from "json5";
 
-const manifest = JSON5.parse(readFileSync("./BP/manifest.json"));
+const plugindata = JSON5.parse(readFileSync("../../src/main/resources/teseract.plugin.json"))
+
 const tsconfig = JSON5.parse(readFileSync("../../tsconfig.json"));
 
-const package_name = manifest.header.name;
-const version = typeof manifest.header.version == "string" ? manifest.header.version : manifest.header.version.join(".");
+const package_name = plugindata.id;
+const version = plugindata.version;
 
 const initialMS = Date.now();
 console.log(`Started building ${package_name}@${version}!`);
+
+
+const indexcode = `
+import Teseract from "teseract/server-api/src/Teseract";
+${(() => {
+        let str = ``
+        for (const entryPoint in plugindata.entrypoints) {
+            const pointData = plugindata.entrypoints[entryPoint]
+            for (const point in pointData) {
+                console.log(point, pointData)
+                str += `import ${point} from "${pointData[point].replace(/\.ts$|\.js$/, '')}";` + `\nTeseract.registerPlugin(new ${point}(), "${point}");\n`
+            }
+        }
+        return str;
+    })()}
+`
+mkdirSync("BP/scripts")
+writeFileSync("BP/scripts/index.js", indexcode)
 
 const files = sync("./data/**/*.{ts,js}");
 
@@ -42,6 +61,7 @@ Promise.all(
                 const outPath = join("BP/scripts", relative("data", file));
                 const outDir = dirname(outPath);
                 mkdirSync(outDir, { recursive: true });
+                console.log(outDir)
                 writeFileSync(outPath.replace(/\.ts$/, ".js"), output.code);
                 if (output.map) {
                     writeFileSync(outPath.replace(/\.ts$/, ".js.map"), output.map);
@@ -50,8 +70,9 @@ Promise.all(
     )
 )
     .then(() => {
-        console.log(`Bundling finished in ${Date.now() - initialMS} milliseconds!`);
+        console.log(`Building finished in ${Date.now() - initialMS} milliseconds!`);
     })
     .catch((error) => {
         console.error(error);
     });
+

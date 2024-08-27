@@ -14,7 +14,7 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "noImplicitAny": false,
-        "typeRoots": ["./src/**/*.d.ts"],
+        // "typeRoots": ["./src/**/*.d.ts"],
 
         "noEmitOnError": true,
         "strictBindCallApply": false,

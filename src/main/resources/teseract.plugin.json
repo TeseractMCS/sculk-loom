@@ -1,0 +1,14 @@
+{
+    "$schema": "https://raw.githubusercontent.com/TeseractMCS/tesselator-schemas/main/plugin/v1.0.json",
+    "name": "Test Plugin",
+    "id": "test-plugin",
+    "version": "1.0.0",
+    "authors": ["Me!"],
+    "description": "Basic teseract plugin config file!",
+    "entrypoints": {
+        "main": {
+            "Test": "test/Test",
+            "entry2": "entry2/Entry2"
+        }
+    }
+}

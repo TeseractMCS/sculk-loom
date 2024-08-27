@@ -1,3 +1,0 @@
-[submodule "src/main/js/teseract/server-api"]
-	path = src/main/js/teseract/server-api
-	url = https://github.com/TeseractMCS/server-api

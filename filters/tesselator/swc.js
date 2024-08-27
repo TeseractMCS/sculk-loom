@@ -5,6 +5,7 @@ import { join, relative, dirname } from "path";
 import JSON5 from "json5";
 
 const manifest = JSON5.parse(readFileSync("./BP/manifest.json"));
+const tsconfig = JSON5.parse(readFileSync("../../tsconfig.json"));
 
 const package_name = manifest.header.name;
 const version = typeof manifest.header.version == "string" ? manifest.header.version : manifest.header.version.join(".");
@@ -27,8 +28,11 @@ Promise.all(
                     legacyDecorator: true,
                     decoratorMetadata: true,
                 },
+                "paths": tsconfig.compilerOptions.paths ?? {},
                 target: "es2020",
+                "baseUrl": "data"
             },
+
             sourceMaps: false,
             module: {
                 type: "es6",
@@ -39,7 +43,6 @@ Promise.all(
                 const outDir = dirname(outPath);
                 mkdirSync(outDir, { recursive: true });
                 writeFileSync(outPath.replace(/\.ts$/, ".js"), output.code);
-                unlinkSync(outPath);
                 if (output.map) {
                     writeFileSync(outPath.replace(/\.ts$/, ".js.map"), output.map);
                 }

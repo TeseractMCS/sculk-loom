@@ -10,11 +10,13 @@
     "modules": [
         {
             "type": "data",
+            "description": "",
             "uuid": "09e2a89f-2e0d-4203-80b9-a84c189f93cb", // Change this value
             "version": "1.0.0"
         },
         {
             "type": "script",
+            "description": "",
             "uuid": "b000e0e6-e741-403f-9cc4-63d6a66cd61a", // Change this value
             "version": "1.0.0",
             "language": "Javascript",

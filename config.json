@@ -3,7 +3,7 @@
 	"author": "Author",
 	"name": "Project Name",
 	"packs": {
-		"behaviorPack": "./src/main/resources/data",
+		"behaviorPack": "./src/main/resources/behavior",
 		"resourcePack": "./src/main/resources/assets"
 	},
 	"regolith": {

@@ -1,0 +1,16 @@
+{
+    "name": "tesselator",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "",
+    "main": "swc.js",
+    "scripts": {
+        "tesselate": "npm i & node swc.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@swc/core": "^1.7.18",
+        "glob": "^11.0.0"
+    }
+}

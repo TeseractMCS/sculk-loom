@@ -2,8 +2,9 @@ import { transformFile } from "@swc/core";
 import { sync } from "glob";
 import { mkdirSync, readFileSync, writeFileSync, unlinkSync } from "fs";
 import { join, relative, dirname } from "path";
+import JSON5 from "json5";
 
-const manifest = JSON.parse(readFileSync("./BP/manifest.json"));
+const manifest = JSON5.parse(readFileSync("./BP/manifest.json"));
 
 const package_name = manifest.header.name;
 const version = typeof manifest.header.version == "string" ? manifest.header.version : manifest.header.version.join(".");
@@ -36,7 +37,6 @@ Promise.all(
             .then((output) => {
                 const outPath = join("BP/scripts", relative("data", file));
                 const outDir = dirname(outPath);
-                console.warn(outDir);
                 mkdirSync(outDir, { recursive: true });
                 writeFileSync(outPath.replace(/\.ts$/, ".js"), output.code);
                 unlinkSync(outPath);

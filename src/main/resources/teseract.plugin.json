@@ -7,8 +7,6 @@
     "description": "Basic teseract plugin config file!",
     "entrypoints": {
         "main": {
-            "Test": "test/Test",
-            "entry2": "entry2/Entry2"
         }
     }
 }

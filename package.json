@@ -1,6 +1,7 @@
 {
   "name": "@teseract/sculk-loom",
   "version": "1.0.1",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {

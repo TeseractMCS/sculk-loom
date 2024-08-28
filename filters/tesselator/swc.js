@@ -15,7 +15,7 @@ const initialMS = Date.now();
 console.log(`Started building ${package_name}@${version}!`);
 
 const indexcode = `
-import Teseract from "teseract/server-api/src/Teseract";
+import Teseract from "./@teseract/server-api/src/Teseract";
 ${(() => {
         let str = ``
         for (const entryPoint in plugindata.entrypoints) {

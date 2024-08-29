@@ -12,7 +12,12 @@
   "dependencies": {
     "@minecraft/server": "^1.14.0-beta.1.21.20-stable",
     "@swc/core": "^1.7.18",
+    "@types/node": "^22.5.1",
+    "esbuild-decorators": "^1.0.0",
     "glob": "^11.0.0",
     "json5": "^2.2.3"
+  },
+  "devDependencies": {
+    "esbuild": "^0.23.1"
   }
 }

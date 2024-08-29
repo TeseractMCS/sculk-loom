@@ -1,7 +1,7 @@
 {
     "format_version": 2,
     "header": {
-        "name": "Project Name",
+        "name": "@teseract/sculk-loom-template",
         "description": "Project Description",
         "version": "1.0.0",
         "uuid": "a5f39cea-5636-47cd-8f8b-7913895edd8b", // Change this value

@@ -30,7 +30,6 @@
         "types": [
             // "./src/global.d.ts"
         ],
-        "declaration": true,
         "noLib": false,
         "sourceMap": true,
         "pretty": true,
@@ -41,7 +40,6 @@
         "outDir": "build/",
         "rootDir": ".",
         "listFiles": false,
-        "noEmitHelpers": true,
         "baseUrl": "./src/main/js",
         "paths": {
             "@teseract/server-api/*": ["./@teseract/server-api/src/*"]

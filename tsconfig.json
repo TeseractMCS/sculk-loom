@@ -4,18 +4,18 @@
     },
     "compilerOptions": {
         "allowJs": true,
-
         "module": "es2020",
         "esModuleInterop": true,
         "moduleResolution": "node",
-        "lib": ["es2020", "DOM"],
+        "lib": [
+            "es2020",
+            "DOM"
+        ],
         "strict": false,
         "target": "es2020",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "noImplicitAny": false,
-        // "typeRoots": ["./src/**/*.d.ts"],
-
         "noEmitOnError": true,
         "strictBindCallApply": false,
         "useUnknownInCatchVariables": false,
@@ -27,9 +27,7 @@
         "alwaysStrict": true,
         "preserveConstEnums": true,
         "newLine": "lf",
-        "types": [
-            // "./src/global.d.ts"
-        ],
+        "types": [],
         "noLib": false,
         "sourceMap": true,
         "pretty": true,
@@ -41,12 +39,10 @@
         "rootDir": ".",
         "listFiles": false,
         "baseUrl": "./src/main/js",
-        "paths": {
-            "@teseract/server-api/*": ["./@teseract/server-api/src/*"]
-        },
-        "resolveJsonModule": true
+        "paths": {}
     },
-    
-    "exclude": ["scripts"],
+    "exclude": [
+        "scripts"
+    ],
     "compileOnSave": false
 }

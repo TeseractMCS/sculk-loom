@@ -1,20 +1,18 @@
+import JSON5 from 'json5';
 import { build } from 'esbuild';
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
-import { resolve } from 'path';
-import JSON5 from 'json5';
 import { esbuildDecorators } from 'esbuild-decorators';
 
 const plugindata = JSON5.parse(readFileSync("../../src/main/resources/teseract.plugin.json"));
 const package_name = plugindata.id;
 const version = plugindata.version;
-const dependencies =["@minecraft/server",...plugindata.dependencies || []];
+const external = ["@minecraft/server", "@minecraft/server-ui", ...plugindata.external || []];
 
 const initialMS = Date.now();
-console.log(`Started building ${package_name}@${version}!`);
-
+console.log(`Started bundling ${package_name}@${version}!`);
 
 const indexcode = `
-import Teseract from "./@teseract/server-api/src/Teseract";
+import { Teseract } from "@teseractmcs/server-api";
 ${(() => {
         let str = ``
         for (const entryPoint in plugindata.entrypoints) {
@@ -27,27 +25,20 @@ ${(() => {
     })()}
 `
 mkdirSync("BP/scripts")
-writeFileSync("data/index.js", indexcode)
+writeFileSync("data/index.ts", indexcode, { recursive: true })
 
-// const entryPoints = Object.values(plugindata.entrypoints).flatMap(ep => Object.values(ep).map(path => resolve("data/" + path)));
-const entryPoints = ["data/index.js"]
-
-// Crear un archivo temporal para importar los módulos externos
-// const tempEntryPoint = resolve("BP/scripts/temp_entry.js");
-// const tempImportCode = dependencies.map(dep => `import "${dep}";`).join('\n');
-// writeFileSync(tempEntryPoint, tempImportCode, { recursive: true });
-
-// Combinar el archivo temporal con los entrypoints especificados
+const entryPoints = ["data/index.ts"]
 const finalEntryPoints = [...entryPoints];
 
-// Ejecutar esbuild para crear el bundle
 build({
     entryPoints: finalEntryPoints,
     bundle: true,
+    // minify: true,
     outfile: 'BP/scripts/index.js',
-    platform: 'node', // Esto asegura que se traten los módulos externos correctamente
+    platform: 'node',
     target: 'es2020',
-    external: dependencies, // Incluye las dependencias en el bundle
+    external: external,
+    allowOverwrite: true,
     format: "esm",
     logLevel: 'info',
     "tsconfig": "../../tsconfig.json",
@@ -56,12 +47,26 @@ build({
     },
     plugins: [
         esbuildDecorators({
-          tsconfig: "../../tsconfig.json",
-          cwd: process.cwd(),
+            tsconfig: "../../tsconfig.json",
+            cwd: process.cwd(),
         }),
-      ],
-      treeShaking: true
+    ],
+    treeShaking: false
 }).then(() => {
-    // Elimina el archivo temporal
+    const code = readFileSync("BP/scripts/index.js").toString();
+    writeFileSync("BP/scripts/index.js", `var __decorate = function(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = function(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+` + code)
     console.log(`Building finished in ${Date.now() - initialMS} milliseconds!`);
-}).catch(() => process.exit(1));
+}).catch((error) => {
+    console.error(error)
+    process.exit(1)
+});

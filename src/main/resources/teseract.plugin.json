@@ -3,11 +3,10 @@
     "name": "Test Plugin",
     "id": "test-plugin",
     "version": "1.0.0",
-    "authors": ["Me!"],
+    "authors": [
+        "Me!"
+    ],
     "description": "Basic teseract plugin config file!",
-    "entrypoints": {
-        "main": {
-            "Test": "test/Test.ts"
-        }
-    }
+    "entrypoints": {},
+    "external": []
 }

@@ -2,4 +2,3 @@
 /.regolith
 node_modules
 /src/main/js/test/*
-filters/tesselator/build

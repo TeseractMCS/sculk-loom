@@ -10,8 +10,8 @@
 		"dataPath": "./src/main/js",
 		"filterDefinitions": {
 			"tesselator": {
-				"runWith": "nodejs",
-				"script": "./filters/tesselator/build/v2.0.0.js"
+				"url": "github.com/TeseractMCS/regolith-filters",
+				"version": "latest"
 			}
 		},
 		"formatVersion": "1.4.0",

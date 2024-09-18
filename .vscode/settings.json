@@ -2,6 +2,13 @@
     "json.schemas": [
         {
             "fileMatch": [
+                "teseract.plugin.{json,jsonc,json5}",
+                "teseract.plugin.json"
+            ],
+            "url": "https://raw.githubusercontent.com/TeseractMCS/teseract-schemas/refs/heads/main/regolith/teseract-plugin/v2.0.json"
+        },
+        {
+            "fileMatch": [
                 "skin_pack/skins.{json,jsonc,json5}"
             ],
             "url": "https://raw.githubusercontent.com/Blockception/Minecraft-bedrock-json-schemas/main/skinpacks/skins.json"

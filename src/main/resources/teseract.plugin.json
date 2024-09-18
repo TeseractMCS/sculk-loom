@@ -1,5 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/TeseractMCS/tesselator-schemas/main/plugin/v1.0.json",
+    "format_version": 1,
     "name": "Test Plugin",
     "id": "test-plugin",
     "version": "1.0.0",
@@ -9,6 +10,10 @@
     "description": "Basic teseract plugin config file!",
     "entryPoints": [
         "test/Test"
+    ],
+    "modules": [
+        "@minecraft/server@1.15.0-beta",
+        "@minecraft/server-ui@1.3.0"
     ],
     "external": []
 }

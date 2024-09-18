@@ -1,0 +1,17 @@
+{
+  "name": "@teseractmcs/sculk-tesselator",
+  "version": "2.0.0",
+  "type": "module",
+  "main": "out/index.js",
+  "scripts": {
+    "clean": "rmdir /s /q build",
+    "build": "npm run clean && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.5.5"
+  }
+}

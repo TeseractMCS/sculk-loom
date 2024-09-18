@@ -11,7 +11,7 @@
 		"filterDefinitions": {
 			"tesselator": {
 				"runWith": "nodejs",
-				"script": "./filters/tesselator/v2.0.0.js"
+				"script": "./filters/tesselator/build/v2.0.0.js"
 			}
 		},
 		"formatVersion": "1.4.0",

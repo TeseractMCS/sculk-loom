@@ -1,17 +1,21 @@
 {
-    "format_version": 2,
-    "header": {
-        "name": "@teseract/sculk-loom-template",
-        "description": "Project Description",
-        "version": "1.0.0",
-        "uuid": "a5f39cea-5636-47cd-8f8b-7913895edd8b", // Change this value
-        "min_engine_version": [1, 21, 20]
-    },
-    "modules": [
-        {
-            "type": "resources",
-            "uuid": "09e2a89f-2e0d-4203-80b9-a84c189f93cb", // Change this value
-            "version": "1.0.0"
-        }
-    ]
+     "format_version": 2,
+     "header": {
+          "name": "@teseract/sculk-loom-template",
+          "description": "Project Description",
+          "version": "1.0.0",
+          "uuid": "a5f39cea-5636-47cd-8f8b-7913895edd8b",
+          "min_engine_version": [
+               1,
+               21,
+               20
+          ]
+     },
+     "modules": [
+          {
+               "type": "resources",
+               "uuid": "09e2a89f-2e0d-4203-80b9-a84c189f93cb",
+               "version": "1.0.0"
+          }
+     ]
 }

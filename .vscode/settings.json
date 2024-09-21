@@ -386,11 +386,13 @@
         },
         {
             "fileMatch": [
+                "behavior/*/items/*.{json,jsonc,json5}",
                 "behavior_packs/*/items/*.{json,jsonc,json5}",
                 "*behavior*pack*/items/*.{json,jsonc,json5}",
                 "*Behavior*Pack*/items/*.{json,jsonc,json5}",
                 "*BP*/items/*.{json,jsonc,json5}",
                 "*bp*/items/*.{json,jsonc,json5}",
+                "*behavior*/items/*.{json,jsonc,json5}",
                 "behavior_packs/*/items/**/*.{json,jsonc,json5}",
                 "*behavior*pack*/items/**/*.{json,jsonc,json5}",
                 "*Behavior*Pack*/items/**/*.{json,jsonc,json5}",
